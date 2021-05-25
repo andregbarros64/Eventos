@@ -6,13 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import br.senai.sc.eventos.database.EventoDAO;
 import br.senai.sc.eventos.modelo.Participante;
 
 public class CadastroEventoActivity extends AppCompatActivity {
-
-    private  final int RESULT_CODE_NOVO_PARTICIPANTE = 10;
-    private final int RESULT_CODE_PARTICIPANTE_EDITADO = 11;
 
     private boolean edicao = false;
     private int id = 0;
@@ -41,7 +40,34 @@ public class CadastroEventoActivity extends AppCompatActivity {
     }
 
     public void  onClickVoltar(View v){
-        finish();
+
+        EditText editTextEvento = findViewById(R.id.editText_Evento);
+        EditText editTextNome = findViewById(R.id.editTextNome);
+        EditText editTextCPF = findViewById(R.id.editText_CPF);
+
+        String evento = editTextEvento.getText().toString();
+        String nome = editTextNome.getText().toString();
+        String CPF = editTextCPF.getText().toString();
+
+        Participante participante = new Participante(id, evento, nome, CPF);
+        EventoDAO produtoDAO = new EventoDAO(getBaseContext());
+        boolean salvou = EventoDAO.salvar(participante);
+        if(salvou){
+            finish();
+        } else{
+            Toast.makeText(CadastroEventoActivity.this,"Erro ao salvar", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void  onClickExcluir(View v){
+        Participante participante = new Participante(id, null, null, null);
+        EventoDAO produtoDAO = new EventoDAO(getBaseContext());
+        boolean excluiu = EventoDAO.excluir(participante);
+        if(excluiu){
+            finish();
+        } else{
+            Toast.makeText(CadastroEventoActivity.this,"Erro ao exluir", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void onClickSalvar(View v) {
@@ -54,15 +80,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
         String CPF = editTextCPF.getText().toString();
 
         Participante participante = new Participante(id, evento, nome, CPF);
-        Intent intent = new Intent();
-
-        if (edicao){
-            intent.putExtra("participanteEditado",participante);
-            setResult(RESULT_CODE_PARTICIPANTE_EDITADO, intent);
-        } else{
-            intent.putExtra("novoParticipante", participante);
-            setResult(RESULT_CODE_NOVO_PARTICIPANTE, intent);
+        EventoDAO produtoDAO = new EventoDAO(getBaseContext());
+        boolean salvou = EventoDAO.salvar(participante);
+        if(salvou){
+             finish();
+         } else{
+         Toast.makeText(CadastroEventoActivity.this,"Erro ao salvar", Toast.LENGTH_LONG).show();
         }
-        finish();
     }
 }

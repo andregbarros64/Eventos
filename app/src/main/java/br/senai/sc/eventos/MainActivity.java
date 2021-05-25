@@ -13,14 +13,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import br.senai.sc.eventos.database.EventoDAO;
 import br.senai.sc.eventos.modelo.Participante;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final int REQUEST_CODE_NOVOPARTICIPANTE = 1;
-    private final int RESULT_CODE_NOVOPARTICIPANTE = 10;
-    private final int REQUEST_CODE_EDITARPRODUTO = 2;
-    private final int RESULT_CODE_PARTICIPANTE_EDITADO = 11;
 
     private ListView listViewParticipantes;
     private ArrayAdapter<Participante> adapterParticipantes;
@@ -31,15 +27,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Eventos");
-
         listViewParticipantes = findViewById(R.id.listView_Participantes);
         ArrayList<Participante> participante = new ArrayList<Participante>();
+        definirOnclickListenerListview();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
         adapterParticipantes = new ArrayAdapter<Participante>(MainActivity.this,
                 android.R.layout.simple_expandable_list_item_1,
-                participante);
+                eventoDAO.listar());
         listViewParticipantes.setAdapter(adapterParticipantes);
-        definirOnclickListenerListview();
     }
 
     private void definirOnclickListenerListview(){
@@ -49,34 +49,13 @@ public class MainActivity extends AppCompatActivity {
             Participante participanteClicado =  adapterParticipantes.getItem(position);
             Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
             intent.putExtra("participanteEdicao",participanteClicado);
-            startActivityForResult(intent,REQUEST_CODE_EDITARPRODUTO);
+            startActivity(intent);
             }
         });
     }
 
     public void onClickNovoParticipante(View v){
         Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
-        startActivityForResult(intent, REQUEST_CODE_NOVOPARTICIPANTE);
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-
-        if(requestCode == REQUEST_CODE_NOVOPARTICIPANTE && resultCode == RESULT_CODE_NOVOPARTICIPANTE){
-            Participante participante = (Participante) data.getExtras().getSerializable("novoParticipante");
-            participante.setId(++id);
-            this.adapterParticipantes.add(participante);
-        } else if(requestCode == REQUEST_CODE_EDITARPRODUTO && resultCode == RESULT_CODE_PARTICIPANTE_EDITADO){
-            Participante participanteEditado = (Participante) data.getExtras().getSerializable("participanteEditado");
-            for (int i = 0; i < adapterParticipantes.getCount(); i++){
-                Participante participante = adapterParticipantes.getItem(i);
-                if(participante.getId() == participanteEditado.getId()){
-                    adapterParticipantes.remove(participante);
-                    adapterParticipantes.insert(participanteEditado, i);
-                    break;
-                }
-            };
-        }
-        super.onActivityResult(requestCode,resultCode,data);
-
+        startActivity(intent);
     }
 }
