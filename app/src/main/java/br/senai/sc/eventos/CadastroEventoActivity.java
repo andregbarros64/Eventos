@@ -29,7 +29,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
         if(intent != null && intent.getExtras() != null &&
                 intent.getExtras().get("participanteEdicao") != null){
             Participante participante = (Participante) intent.getExtras().get("participanteEdicao");
-            EditText editTextEvento = findViewById(R.id.editText_Evento);
+            EditText editTextEvento = findViewById(R.id.editText_EventoLista);
             EditText editTextNome = findViewById(R.id.editTextNome);
             EditText editTextCPF = findViewById((R.id.editText_CPF));
             editTextEvento.setText(participante.getlocalEvento());
@@ -41,7 +41,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     public void  onClickVoltar(View v){
 
-        EditText editTextEvento = findViewById(R.id.editText_Evento);
+        EditText editTextEvento = findViewById(R.id.editText_EventoLista);
         EditText editTextNome = findViewById(R.id.editTextNome);
         EditText editTextCPF = findViewById(R.id.editText_CPF);
 
@@ -71,7 +71,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
     }
 
     public void onClickSalvar(View v) {
-        EditText editTextEvento = findViewById(R.id.editText_Evento);
+        EditText editTextEvento = findViewById(R.id.editText_EventoLista);
         EditText editTextNome = findViewById(R.id.editTextNome);
         EditText editTextCPF = findViewById(R.id.editText_CPF);
 

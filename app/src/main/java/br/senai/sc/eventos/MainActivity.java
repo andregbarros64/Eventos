@@ -1,6 +1,5 @@
 package br.senai.sc.eventos;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,19 +16,23 @@ import br.senai.sc.eventos.database.EventoDAO;
 import br.senai.sc.eventos.modelo.Participante;
 
 public class MainActivity extends AppCompatActivity {
-
     private ListView listViewParticipantes;
     private ArrayAdapter<Participante> adapterParticipantes;
-    private int id = 0;
+    private final int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String[] locais = getResources().getStringArray(R.array.locais);
         setTitle("Eventos");
         listViewParticipantes = findViewById(R.id.listView_Participantes);
         ArrayList<Participante> participante = new ArrayList<Participante>();
         definirOnclickListenerListview();
+        AutoCompleteTextView editText = findViewById(R.id.editText_EventoLista);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        android.R.layout.simple_list_item_1, locais);
+        editText.setAdapter(adapter);
     }
 
     @Override

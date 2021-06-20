@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Eventos</string>
+
+    <string-array name="locais">
+        <item>Anitápolis</item>
+        <item>Biguaçu</item>
+        <item>Brusque</item>
+        <item>Blumenau</item>
+        <item>Criciúma</item>
+        <item>Florianópolis</item>
+        <item>Gaspar</item>
+        <item>Lages</item>
+        <item>Jaraguá do Sul</item>
+        <item>Joinville</item>
+        <item>Lages</item>
+        <item>Palhoça</item>
+        <item>Rancho Queimado</item>
+        <item>São José</item>
+        <item>Tubarão</item>
+    </string-array>
+
 </resources>

@@ -13,12 +13,23 @@
         android:layout_height="wrap_content"
         android:text="Local do evento" />
 
-    <EditText
+    <AutoCompleteTextView
+        android:id="@+id/editText_EventoLista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:completionHint="Selecione um local"
+        android:completionThreshold="3"
+        android:dropDownAnchor="@id/editText_Evento"
+        android:hint="Selecione um local"
+        android:popupBackground="?attr/colorAccent" />
+
+    <TextView
         android:id="@+id/editText_Evento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:paddingBottom="16dp"
+        android:text="Locais"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView_nome"
