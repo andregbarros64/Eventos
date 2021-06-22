@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:completionHint="Selecione um local"
-        android:completionThreshold="3"
+        android:completionThreshold="1"
         android:dropDownAnchor="@id/editText_Evento"
         android:hint="Selecione um local"
         android:popupBackground="?attr/colorAccent" />

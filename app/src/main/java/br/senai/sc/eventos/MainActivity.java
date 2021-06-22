@@ -13,6 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import br.senai.sc.eventos.database.EventoDAO;
+import br.senai.sc.eventos.database.entity.EventoEntity;
 import br.senai.sc.eventos.modelo.Participante;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,15 +25,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] locais = getResources().getStringArray(R.array.locais);
-        setTitle("Eventos");
+         setTitle("Eventos");
         listViewParticipantes = findViewById(R.id.listView_Participantes);
         ArrayList<Participante> participante = new ArrayList<Participante>();
         definirOnclickListenerListview();
-        AutoCompleteTextView editText = findViewById(R.id.editText_EventoLista);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        android.R.layout.simple_list_item_1, locais);
-        editText.setAdapter(adapter);
     }
 
     @Override
@@ -61,4 +57,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
         startActivity(intent);
     }
+
+
 }
