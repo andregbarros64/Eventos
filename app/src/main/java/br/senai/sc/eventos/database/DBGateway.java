@@ -19,6 +19,11 @@ public class DBGateway {
 
         DataBaseDBHelper dbHelper = new DataBaseDBHelper(context);
         db = dbHelper.getWritableDatabase();
+        db.execSQL("INSERT INTO eventos(nome)VALUES('Florianópolis')");
+        db.execSQL("INSERT INTO eventos(nome)VALUES('Joinville')");
+        db.execSQL("INSERT INTO eventos(nome)VALUES('Blumenau')");
+        db.execSQL("INSERT INTO eventos(nome)VALUES('Curitiba')");
+        db.execSQL("INSERT INTO eventos(nome)VALUES('São Paulo')");
     }
 
     public SQLiteDatabase getDataBase(){

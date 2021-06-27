@@ -13,12 +13,17 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import br.senai.sc.eventos.database.EventoDAO;
+import br.senai.sc.eventos.database.EventoNomeDAO;
+import br.senai.sc.eventos.modelo.NomeEvento;
 import br.senai.sc.eventos.modelo.Participante;
 
 public class MainActivity extends AppCompatActivity {
     private ListView listViewParticipantes;
     private ArrayAdapter<Participante> adapterParticipantes;
+    private ArrayAdapter<NomeEvento> adapterEventos;
+    private AutoCompleteTextView listViewEventos;
     private final int id = 0;
+    private AutoCompleteTextView autoCompleteEventos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +33,27 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Eventos");
         listViewParticipantes = findViewById(R.id.listView_Participantes);
         ArrayList<Participante> participante = new ArrayList<Participante>();
+        ArrayList<NomeEvento> eventos = new ArrayList<NomeEvento>();
         definirOnclickListenerListview();
-        AutoCompleteTextView editText = findViewById(R.id.editText_EventoLista);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        android.R.layout.simple_list_item_1, locais);
-        editText.setAdapter(adapter);
-    }
+  }
 
     @Override
     protected void onResume() {
         super.onResume();
         EventoDAO eventoDAO = new EventoDAO(getBaseContext());
+        EventoNomeDAO eventoNomeDAO = new EventoNomeDAO(getBaseContext());
+
         adapterParticipantes = new ArrayAdapter<Participante>(MainActivity.this,
                 android.R.layout.simple_expandable_list_item_1,
                 eventoDAO.listar());
         listViewParticipantes.setAdapter(adapterParticipantes);
+
+        adapterEventos = new ArrayAdapter<NomeEvento>(MainActivity.this,
+                android.R.layout.simple_expandable_list_item_1,
+                eventoNomeDAO.listar());
+        listViewEventos.setAdapter(adapterEventos);
+
+
     }
 
     private void definirOnclickListenerListview(){
@@ -62,3 +73,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+

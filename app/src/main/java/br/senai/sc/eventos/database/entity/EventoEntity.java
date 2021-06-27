@@ -10,5 +10,5 @@ public final class EventoEntity implements BaseColumns{
     public static final String COLUMN_NAME_NOME = "evento";
     public static final String COLUMN_NAME_PARTICIPANTE = "participante";
     public static final String COLUMN_NAME_valor = "CPF";
-
 }
+

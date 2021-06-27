@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class CadastroEventoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_evento);
         setTitle("Cadastro de participante");
         carregarParticipante();
+        AutoCompleteTextView lista = (AutoCompleteTextView) findViewById(R.id.listView_NomeEventos);
+
     }
 
     private void carregarParticipante(){

@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:completionHint="Selecione um local"
-        android:completionThreshold="3"
+        android:completionThreshold="1"
         android:dropDownAnchor="@id/editText_Evento"
         android:hint="Selecione um local"
         android:popupBackground="?attr/colorAccent" />
@@ -78,11 +78,19 @@
             android:text="Voltar" />
 
         <Button
+            android:id="@+id/button"
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Evento" />
+
+        <Button
             android:id="@+id/btn_gravar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClickSalvar"
             android:text="Gravar" />
+
     </LinearLayout>
 </LinearLayout>
