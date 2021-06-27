@@ -45,6 +45,7 @@ public class EventoDAO {
         return false;
     }
 
+
     public List<Participante> listar(){
         List<Participante> participantes = new ArrayList<>();
         Cursor cursor = dbGateway.getDataBase().rawQuery(SQL_LISTAR_TODOS,null);
@@ -59,4 +60,7 @@ public class EventoDAO {
         return participantes;
     }
 
+    public static DBGateway getDbGateway() {
+        return dbGateway;
+    }
 }

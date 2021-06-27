@@ -2,14 +2,22 @@ package br.senai.sc.eventos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+<<<<<<< HEAD
+=======
+import android.widget.ArrayAdapter;
+>>>>>>> a59515a9dbcb290ca60b6036dbb5ae2a523493b3
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Collections;
+
 import br.senai.sc.eventos.database.EventoDAO;
+import br.senai.sc.eventos.database.entity.EventoEntity;
 import br.senai.sc.eventos.modelo.Participante;
 
 public class CadastroEventoActivity extends AppCompatActivity {
@@ -23,7 +31,16 @@ public class CadastroEventoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_evento);
         setTitle("Cadastro de participante");
         carregarParticipante();
+<<<<<<< HEAD
         AutoCompleteTextView lista = (AutoCompleteTextView) findViewById(R.id.listView_NomeEventos);
+=======
+
+        AutoCompleteTextView editText = findViewById(R.id.editText_EventoLista);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, Collections.singletonList("select distinct " + EventoEntity.COLUMN_NAME_NOME
+                + "from " + EventoEntity.TABLE_NAME + " where " + EventoEntity.COLUMN_NAME_NOME + " LIKE %" + editText.toString() + "% order by 1 asc"));
+        editText.setAdapter(adapter);
+>>>>>>> a59515a9dbcb290ca60b6036dbb5ae2a523493b3
 
     }
 
